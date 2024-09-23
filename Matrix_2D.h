@@ -12,10 +12,10 @@ class Matrix_2D {
     using D2 = std::vector<std::vector<T>>;
     using size_type = typename std::vector<T>::size_type;
     D2 elem;
-    Matrix_2D (int r, int c) : row(r), col(c), elem(r, std::vector<T>(c, 0)) {}
+    Matrix_2D (int r, int c) : row(r), col(c), elem(r, std::vector<T>(c, T{})) {}
     void transpose ();
     std::vector<T>& operator[](size_type i) {
-      if (i > elem.size() - 1) throw std::invalid_argument("out of range");
+      if (i > elem.size() - 1) throw std::out_of_range("out of range");
       return elem[i];
     }
     Matrix_2D<T> dot(Matrix_2D<T>& M);
@@ -25,7 +25,7 @@ class Matrix_2D {
 
 template<class T>
 void  Matrix_2D<T>::transpose () {
-  D2 t_elem (col, std::vector<T>(row, 0));
+  D2 t_elem (col, std::vector<T>(row, T{}));
   for (int i = 0; i < row; i++) {
     for (int j = 0; j < col; j++) {
       t_elem[j][i] = elem[i][j];
