@@ -1,7 +1,7 @@
 #include <cmath>
 #include <iostream>
 #include <vector>
-
+#include <time.h>
 
 template<class T> 
 class Matrix_2D {
@@ -21,6 +21,8 @@ class Matrix_2D {
     Matrix_2D<T> dot(Matrix_2D<T>& M);
     void operator=(std::vector<T>& v);
     bool operator==(Matrix_2D<T> & M);
+    Matrix_2D<T>& random(long seed = 0);
+    void show();
 };
 
 template<class T>
@@ -68,4 +70,25 @@ bool Matrix_2D<T>::operator==(Matrix_2D& M) {
   if (row != M.row || col != M.col) return false;
 
   return elem == M.elem;
+}
+
+template<class T>
+Matrix_2D<T>& Matrix_2D<T>::random(long seed) {
+  srand(seed);
+  for (int i = 0; i < row; i++) {
+    for (int j = 0; j < col; j++) {
+      elem[i][j] = (rand() % 3 - 1) * rand() % 100;
+    }
+  }
+  return *this;
+}
+
+template<class T>
+void Matrix_2D<T>::show() {
+  for (int i = 0; i < row; i++) {
+    for (int j = 0; j < col; j++) {
+      std::cout << elem[i][j] << ", ";
+    }
+    std::cout << std::endl;
+  }
 }
