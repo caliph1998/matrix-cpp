@@ -69,33 +69,3 @@ bool Matrix_2D<T>::operator==(Matrix_2D& M) {
 
   return elem == M.elem;
 }
-
-
-int main () {
-  Matrix_2D<int> m(3,4), n(4,3);
-  // for (int i = 0; i < m.row; i++ ) {
-  //   for (int j = 0; j < m.col; j++ ) {
-  //     m[i][j] = (i + 1) * (j + i + 1);
-  //   }
-  // }
-  
-  // for (int i = 0; i < n.row; i++ ) {
-  //   for (int j = 0; j < n.col; j++ ) {
-  //     n[i][j] = (i + 3) * (j - i + 2);
-  //   }
-  // }
-
-
-
-
-  std::vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
-   m = v;
-   n = v;
-  Matrix_2D<int> l = m.dot(n);
-  v = {70, 80, 90, 158, 184, 210, 246, 288, 330};
-  Matrix_2D<int> test_l(3,3);
-  test_l = v;
-  std::cout<< (l == test_l);
-  std::cout<< l[2][1];
-  return 0;
-}
